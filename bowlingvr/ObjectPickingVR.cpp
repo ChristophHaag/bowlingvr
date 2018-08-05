@@ -34,7 +34,7 @@ bool ObjectPickingVR::pickBody(btVector3 origin, btVector3 direction)
 				btVector3 localPivot = body->getCenterOfMassTransform().inverse() * pickPos;
 				btPoint2PointConstraint* p2p = new btPoint2PointConstraint(*body, localPivot);
 				dynamicWorld->addConstraint(p2p, true);
-				std::cout << "BULLET: Added constraint " << (int)p2p << std::endl;
+				std::cout << "BULLET: Added constraint " << p2p << std::endl;
 				pickData.body = body;
 				pickData.oldFriction = pickData.body->getFriction();
 				pickData.body->setFriction(200.f);
@@ -81,7 +81,7 @@ void ObjectPickingVR::removePickingConstraint()
 
 		
 
-		std::cout << "BULLET: Removed constraint " << (int)pickData.constraint << std::endl;
+		std::cout << "BULLET: Removed constraint " << pickData.constraint << std::endl;
 		delete pickData.constraint;
 		pickData.constraint = nullptr;
 		btVector3 vel = pickData.body->getLinearVelocity();

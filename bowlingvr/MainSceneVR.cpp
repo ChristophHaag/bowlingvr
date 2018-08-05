@@ -3,6 +3,16 @@
 #include "MainSceneVR.h"
 #include "ShaderStrings.h"
 
+#ifndef _countof
+#define _countof(x) (sizeof(x)/sizeof((x)[0]))
+#endif
+
+#ifndef _WIN32
+#define stricmp strcmp
+#include <unistd.h>
+#define Sleep(x) usleep((x)*1000)
+#endif
+
 #define MSAA_SAMPLES 8
 
 MainSceneVR::MainSceneVR(Application * application) : MainScene(application)

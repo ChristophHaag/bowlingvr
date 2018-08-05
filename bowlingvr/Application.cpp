@@ -12,7 +12,9 @@ void Application::SetState(GameStateInterface *state)
 	this->state->Init();
 
 #ifndef _DEBUG
+#ifdef _WIN32
 	FreeConsole();
+#endif
 #endif
 }
 

@@ -1,9 +1,12 @@
-#include <Windows.h>
 #include "GL/glew.h"
 #include <stdio.h>
-#include <direct.h> 
 #include "ShaderStrings.h"
 #include "MainScene.h"
+
+#ifndef WINDOWS
+#include <unistd.h>
+#define _getcwd getcwd
+#endif
 
 MainScene::MainScene(Application *application) : GameState(application)
 {
@@ -64,13 +67,14 @@ bool MainScene::Init()
 
 	std::cout << "BOWLING:: Loading models..." << std::endl;
 
-	this->room = new Alley(this->modelShader, std::string(cCurrentPath) + "\\models\\alley.obj");
+	this->room = new Alley(this->modelShader, std::string(cCurrentPath) + "/models/alley.obj");
 	this->room->pInit(0, btVector3(0, 0, -17));
 	this->dynamicWorld->addRigidBody(room->rigidBody);
 
-	this->sphere = new Model(this->modelShader, std::string(cCurrentPath) + "\\models\\ball\\ball_0175.obj");
+	//this->sphere = new Model(this->modelShader, std::string(cCurrentPath) + "/models/ball/ball_0175.obj");
+	this->sphere = new Model(this->modelShader, std::string(cCurrentPath) + "/models/ball/ball.obj");
 
-	this->pin = new Model(this->modelShader, std::string(cCurrentPath) + "\\models\\pin\\bowling_pin_001.obj");
+	this->pin = new Model(this->modelShader, std::string(cCurrentPath) + "/models/pin/bowling_pin_001.obj");
 	
 	pinPositions.push_back(btVector3(-1.f, 0.3f, -54.f));
 	pinPositions.push_back(btVector3(-0.5f, 0.3f, -54.f));

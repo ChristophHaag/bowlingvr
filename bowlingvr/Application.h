@@ -1,9 +1,8 @@
 #pragma once
 
 #include "Window.h"
-#include <Windows.h>
 #include <SDL2/SDL.h>
-#include <GL/GL.h>
+#include <GL/gl.h>
 #include <openvr/openvr.h>
 
 //!  application_exception class. 

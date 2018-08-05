@@ -28,6 +28,10 @@ Window::Window(const std::string& title, int x, int y, int width, int height)
 
 void Window::InitRenderer()
 {
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 5);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE );
+
 	this->sdlGLContext = SDL_GL_CreateContext(this->sdlWindow);
 	if (this->sdlGLContext == nullptr)
 	{
@@ -35,8 +39,8 @@ void Window::InitRenderer()
 	}
 	else
 	{
-		//VSYNC 1 on 0 off -1 off off
-		if (SDL_GL_SetSwapInterval(-1) < 0)
+		//VSYNC 1 on 0 off -1 not supported
+		if (SDL_GL_SetSwapInterval(0) < 0)
 		{
 			throw context_exception(SDL_GetError());
 		}

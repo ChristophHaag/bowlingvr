@@ -220,7 +220,7 @@ void main()
 		//specular
 		float specular;
 		
-		if(diff == 0)
+		if(diff == vec4(0,0,0,0))
 			specular = 0;
 		else
 			specular = pow(dot( E,R ), Material.shininess);
